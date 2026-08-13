@@ -2,18 +2,30 @@ from datetime import datetime
 
 
 print("Введите последовательно дату вашего рождения")
-print("День")
-day = int(input())
+date = None
 
-print("Месяц")
-month = int(input())
+#проверка корректности введения
+#повторный запрос данных в случае некорректности
+while True:
+    print("День")
+    day = int(input())
 
-print("Год")
-year = int(input())
+    print("Месяц")
+    month = int(input())
 
-date = datetime(year, month, day)
+    print("Год")
+    year = int(input())
+
+    try:
+        date = datetime(year, month, day)
+        break
+    except ValueError:
+        print('Неверная дата, введите ее заново')
+
+#текущая дата
 now = datetime.now()
 
+#функция определения дня недели по дате
 def weekday():
     print("Этот день был ", end='')
 
@@ -33,7 +45,7 @@ def weekday():
         case 7:
             print("воскресеньем")
 
-
+#функция определения високосного года
 def year_type():
     try:
         datetime(year, 2, 29)
@@ -41,13 +53,14 @@ def year_type():
     except ValueError:
         print("Это был не високосный год")
 
+#функция определения возраста пользователя относительно настоящего момента
 def age():
     if now < datetime(now.year, month, day):
         print("Вам сейчас",now.year - date.year - 1,"лет")
     else:
         print("Вам сейчас",now.year - date.year,"лет")
 
-
+#отрисовка даты с помощью звездочек
 def print_date():
     date_to_print = str(date.day) + str(date.month) + str(date.year)
     symbols = {
@@ -77,7 +90,7 @@ def print_date():
     for line in lines:
         print(line)
 
-
+#вызов функций в соответствующем порядке
 weekday()
 year_type()
 age()
