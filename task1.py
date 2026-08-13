@@ -7,16 +7,17 @@ date = None
 #проверка корректности введения
 #повторный запрос данных в случае некорректности
 while True:
-    print("День")
-    day = int(input())
-
-    print("Месяц")
-    month = int(input())
-
-    print("Год")
-    year = int(input())
-
     try:
+        print("День")
+        day = int(input())
+
+        print("Месяц")
+        month = int(input())
+
+        print("Год")
+        year = int(input())
+
+
         date = datetime(year, month, day)
         break
     except ValueError:
